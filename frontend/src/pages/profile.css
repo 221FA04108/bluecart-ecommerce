@@ -1,0 +1,613 @@
+.profile-page {
+    min-height: calc(100vh - 72px);
+    background: #f7f9fc;
+    padding: 42px 24px 60px;
+}
+
+.profile-container {
+    width: min(100%, 1050px);
+    margin: 0 auto;
+}
+
+/* =========================
+   Page Heading
+   ========================= */
+
+.profile-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.profile-heading h1 {
+    margin: 0;
+    color: #101828;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.profile-heading p {
+    margin: 7px 0 0;
+    color: #667085;
+    font-size: 14px;
+}
+
+/* =========================
+   Profile Card
+   ========================= */
+
+.profile-card {
+    background: #ffffff;
+    border: 1px solid #e4e7ec;
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(16, 24, 40, 0.06);
+    overflow: hidden;
+}
+
+/* =========================
+   Profile Header
+   ========================= */
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 28px 32px;
+}
+
+.profile-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    color: #1769e0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+.profile-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-card-header h2 {
+    margin: 0;
+    color: #101828;
+    font-size: 19px;
+    font-weight: 650;
+}
+
+.profile-card-header span {
+    display: block;
+    margin-top: 4px;
+    color: #667085;
+    font-size: 13px;
+}
+
+/* =========================
+   Global Edit Profile Button
+   ========================= */
+
+.edit-profile-button {
+    height: 40px;
+    padding: 0 18px;
+
+    border: 1px solid #1769e0;
+    border-radius: 9px;
+
+    background: #ffffff;
+    color: #1769e0;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    flex-shrink: 0;
+}
+
+.edit-profile-button:hover {
+    background: #1769e0;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(23, 105, 224, 0.18);
+}
+
+.edit-profile-button:active {
+    transform: translateY(1px);
+}
+
+/* =========================
+   Divider
+   ========================= */
+
+.profile-divider {
+    height: 1px;
+    background: #eaecf0;
+}
+
+/* =========================
+   Profile Fields
+   ========================= */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 30px;
+    padding: 32px;
+}
+
+.profile-field {
+    min-width: 0;
+}
+
+.profile-field-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.profile-field-header label {
+    color: #344054;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =========================
+   Inputs
+   ========================= */
+
+.profile-input-wrapper input,
+.profile-input-wrapper select {
+    width: 100%;
+    height: 46px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    background: #f9fafb;
+    color: #101828;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+/*
+ * Read-only fields.
+ *
+ * Email and mobile remain read-only until
+ * the user authenticates specifically for
+ * that field.
+ */
+
+.profile-input-wrapper input[readonly] {
+    cursor: default;
+    color: #475467;
+    background: #f9fafb;
+}
+
+/*
+ * Editable fields.
+ */
+
+.profile-input-wrapper input:not([readonly]),
+.profile-input-wrapper select {
+    background: #ffffff;
+    border-color: #98a2b3;
+}
+
+/*
+ * Focus state for editable fields.
+ */
+
+.profile-input-wrapper input:not([readonly]):focus,
+.profile-input-wrapper select:focus {
+    border-color: #1769e0;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 105, 224, 0.10);
+}
+
+/* =========================
+   Protected Field Authentication
+   ========================= */
+
+/*
+ * Email and mobile authentication control.
+ *
+ * This is a button because the user can click it
+ * to open the authentication modal.
+ */
+
+.field-security-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    margin-top: 6px;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #98a2b3;
+
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1.4;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.field-security-note:hover:not(:disabled) {
+    color: #1769e0;
+}
+
+.field-security-note:focus-visible {
+    outline: 2px solid rgba(23, 105, 224, 0.25);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/*
+ * Once authentication has been completed,
+ * the indicator becomes green and non-clickable.
+ */
+
+.field-security-note.authenticated {
+    color: #16794a;
+    cursor: default;
+}
+
+.field-security-note:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+/* =========================
+   Bottom Actions
+   ========================= */
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 24px 32px;
+}
+
+.cancel-changes-button,
+.save-changes-button {
+    min-width: 145px;
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+/* Cancel */
+
+.cancel-changes-button {
+    border: 1px solid #d0d5dd;
+    background: #ffffff;
+    color: #344054;
+}
+
+.cancel-changes-button:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #98a2b3;
+}
+
+/* Save */
+
+.save-changes-button {
+    border: 1px solid #1769e0;
+    background: #1769e0;
+    color: #ffffff;
+}
+
+.save-changes-button:hover:not(:disabled) {
+    background: #155dcc;
+}
+
+/* Disabled buttons */
+
+.cancel-changes-button:disabled,
+.save-changes-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* =========================
+   Messages
+   ========================= */
+
+.profile-message {
+    margin-bottom: 18px;
+    padding: 12px 15px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+}
+
+.profile-message.error {
+    background: #fff4f4;
+    border: 1px solid #f3c2c2;
+    color: #b42318;
+}
+
+.profile-message.success {
+    background: #f0fdf4;
+    border: 1px solid #b7ebc6;
+    color: #16794a;
+}
+
+/* =========================
+   Loading
+   ========================= */
+
+.profile-loading {
+    min-height: 400px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #667085;
+    font-size: 15px;
+}
+
+/* =========================
+   Authentication Modal
+   ========================= */
+
+.profile-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    background: rgba(16, 24, 40, 0.42);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.profile-auth-modal {
+    position: relative;
+
+    width: min(100%, 420px);
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 20px 60px rgba(16, 24, 40, 0.20);
+}
+
+/* Modal close button */
+
+.modal-close {
+    position: absolute;
+
+    top: 14px;
+    right: 15px;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    background: transparent;
+
+    color: #667085;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: #101828;
+}
+
+/* Modal heading */
+
+.profile-auth-modal h2 {
+    margin: 0;
+
+    color: #101828;
+
+    font-size: 20px;
+}
+
+.profile-auth-modal p {
+    margin: 9px 0 20px;
+
+    color: #667085;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* Modal input */
+
+.profile-auth-modal input {
+    width: 100%;
+    height: 45px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-auth-modal input:focus {
+    border-color: #1769e0;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 105, 224, 0.10);
+}
+
+/* Modal actions */
+
+.auth-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.modal-cancel-button,
+.modal-confirm-button {
+    height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* Modal cancel */
+
+.modal-cancel-button {
+    border: 1px solid #d0d5dd;
+
+    background: #ffffff;
+
+    color: #344054;
+}
+
+.modal-cancel-button:hover {
+    background: #f9fafb;
+}
+
+/* Modal confirm */
+
+.modal-confirm-button {
+    border: 1px solid #1769e0;
+
+    background: #1769e0;
+
+    color: #ffffff;
+}
+
+.modal-confirm-button:hover {
+    background: #155dcc;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        padding: 28px 15px 45px;
+    }
+
+    .profile-heading h1 {
+        font-size: 25px;
+    }
+
+    .profile-card-header {
+        padding: 24px;
+        flex-wrap: wrap;
+    }
+
+    .profile-user-info {
+        flex: 1;
+    }
+
+    .edit-profile-button {
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 22px;
+    }
+
+    .profile-actions {
+        padding: 20px 24px;
+        flex-direction: column-reverse;
+    }
+
+    .cancel-changes-button,
+    .save-changes-button {
+        width: 100%;
+    }
+
+    .profile-auth-modal {
+        padding: 27px 22px;
+    }
+}

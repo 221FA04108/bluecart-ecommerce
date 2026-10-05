@@ -1,0 +1,1067 @@
+/* =========================================================
+   PRODUCTS PAGE
+========================================================= */
+
+.products-page {
+    min-height: 100vh;
+
+    background: #f7f9fc;
+
+    padding-bottom: 60px;
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.products-header {
+    text-align: center;
+
+    padding: 55px 20px 30px;
+}
+
+
+.products-header h1 {
+    margin: 0;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+    font-weight: 650;
+
+    color: #0f172a;
+
+    letter-spacing: -0.4px;
+}
+
+
+.products-header p {
+    margin-top: 10px;
+
+    color: #64748b;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.category-list {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    padding: 10px 30px 35px;
+}
+
+
+.category-button {
+    border: 1px solid #dbe3ef;
+
+    background: white;
+
+    color: #334155;
+
+    padding: 10px 20px;
+
+    border-radius: 24px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.category-button:hover {
+    border-color: #2563eb;
+
+    color: #2563eb;
+}
+
+
+.category-button.active {
+    background: #2563eb;
+
+    color: white;
+
+    border-color: #2563eb;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.products-content {
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 0 30px;
+
+    display: grid;
+
+    grid-template-columns: 230px 1fr;
+
+    gap: 30px;
+}
+
+
+/* =========================================================
+   FILTER SIDEBAR
+========================================================= */
+
+.filter-sidebar {
+    background: white;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    height: fit-content;
+
+    position: sticky;
+
+    top: 90px;
+}
+
+
+.filter-sidebar h3 {
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    color: #0f172a;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+.price-values {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 13px;
+
+    color: #475569;
+
+    margin-bottom: 18px;
+}
+
+
+.filter-sidebar label {
+    display: block;
+
+    font-size: 13px;
+
+    color: #64748b;
+
+    margin: 15px 0 8px;
+}
+
+
+.filter-sidebar input[type="range"] {
+    width: 100%;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PRODUCTS TOOLBAR
+========================================================= */
+
+.products-toolbar {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.products-toolbar p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/*
+   Right side of toolbar
+
+   Contains:
+   - Searching indicator
+   - Sort dropdown
+*/
+
+.products-toolbar-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   SEARCHING INDICATOR
+========================================================= */
+
+.searching-indicator {
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 34px;
+
+    padding: 0 10px;
+
+    border-radius: 9px;
+
+    background: rgba(37, 99, 235, 0.06);
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    animation: searchingFade 0.8s ease-in-out infinite alternate;
+}
+
+
+@keyframes searchingFade {
+
+    from {
+        opacity: 0.55;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   SEARCH ERROR
+========================================================= */
+
+.search-error {
+    margin: 0 0 16px;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(220, 38, 38, 0.12);
+
+    border-radius: 10px;
+
+    background: rgba(239, 68, 68, 0.06);
+
+    color: #dc2626;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SORT SELECT
+========================================================= */
+
+.products-toolbar select {
+    padding: 10px 14px;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #334155;
+
+    cursor: pointer;
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.products-toolbar select:hover {
+    border-color: #bfdbfe;
+}
+
+
+.products-toolbar select:focus {
+    border-color: #93c5fd;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    align-items: stretch;
+
+    gap: 24px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.product-card {
+    display: flex;
+
+    flex-direction: column;
+
+    height: 100%;
+
+    min-height: 500px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 22px rgba(15, 23, 42, 0.045);
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.product-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.product-image-container {
+    position: relative;
+
+    width: 100%;
+
+    height: 235px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f8fafc;
+
+    overflow: hidden;
+}
+
+
+.product-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 16px;
+
+    display: block;
+}
+
+
+.product-image-placeholder {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    height: 100%;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   WISHLIST / HEART BUTTON
+========================================================= */
+
+.like-button {
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    width: 44px;
+
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    color: #0f172a;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.like-button:hover {
+    transform: scale(1.06);
+
+    color: #2563eb;
+}
+
+
+.like-button.liked {
+    color: #2563eb;
+
+    border-color: #bfdbfe;
+
+    background: #eff6ff;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE NAVIGATION
+   These arrows are ONLY for the PRODUCT CARD.
+========================================================= */
+
+.product-image-nav {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    color: #334155;
+
+    font-size: 23px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 4;
+
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.08);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.product-image-nav:hover {
+    background: #ffffff;
+
+    color: #2563eb;
+}
+
+
+.product-image-prev {
+    left: 12px;
+}
+
+
+.product-image-next {
+    right: 12px;
+}
+
+
+/* =========================================================
+   IMAGE INDICATORS
+========================================================= */
+
+.product-image-indicators {
+    position: absolute;
+
+    bottom: 12px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 6px;
+
+    z-index: 4;
+}
+
+
+.product-image-dot {
+    width: 7px;
+
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(100, 116, 139, 0.35);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.product-image-dot.active {
+    background: #2563eb;
+
+    transform: scale(1.2);
+}
+
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.product-info {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 16px 20px 18px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.product-brand {
+    margin: 0 0 5px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   PRODUCT NAME
+========================================================= */
+
+.product-name {
+    min-height: 42px;
+
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 17px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    letter-spacing: -0.15px;
+}
+
+
+/*
+ * No product description is styled here.
+ *
+ * The product listing intentionally does NOT show
+ * the description.
+ *
+ * Description is shown only on ProductDetails.jsx.
+ */
+
+
+/* =========================================================
+   PRODUCT PRICE
+========================================================= */
+
+.product-price {
+    margin: 10px 0 0;
+
+    color: #2563eb;
+
+    font-size: 21px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   LOW STOCK
+========================================================= */
+
+.low-stock-alert {
+    margin: 10px 0 0;
+
+    color: #dc2626;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   OUT OF STOCK
+========================================================= */
+
+.out-of-stock {
+    margin: 10px 0 0;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.product-card-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: auto;
+
+    padding-top: 16px;
+}
+
+
+/* =========================================================
+   VIEW PRODUCT BUTTON
+========================================================= */
+
+.view-product-button {
+    width: 100%;
+
+    height: 46px;
+
+    min-height: 46px;
+
+    flex-shrink: 0;
+
+    padding: 0 14px;
+
+    margin: 0;
+
+    border: 1px solid #2563eb;
+
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.view-product-button:hover {
+    background: #2563eb;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ADD TO CART BUTTON
+========================================================= */
+
+.product-card-cart-wrapper {
+    width: 100%;
+
+    height: 46px;
+
+    min-height: 46px;
+
+    flex-shrink: 0;
+}
+
+
+/*
+ * AddToCartButton currently uses .cart-button.
+ */
+
+.product-card-cart-wrapper .cart-button,
+.product-info > .cart-button {
+    width: 100%;
+
+    height: 46px;
+
+    min-height: 46px;
+
+    margin: 0;
+
+    padding: 0 14px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.product-card-cart-wrapper .cart-button:hover,
+.product-info > .cart-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+.product-card-cart-wrapper .cart-button.added,
+.product-info > .cart-button.added {
+    background: #e8f1ff;
+
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   EMPTY / LOADING STATES
+========================================================= */
+
+.products-status,
+.no-products {
+    text-align: center;
+
+    padding: 80px 20px;
+
+    color: #64748b;
+}
+
+
+.no-products {
+    background: white;
+
+    border-radius: 16px;
+
+    border: 1px solid #e5eaf1;
+}
+
+
+.no-products h2 {
+    color: #0f172a;
+
+    font-weight: 600;
+}
+
+
+.no-products p {
+    margin-top: 8px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   SMALLER TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .products-content {
+        grid-template-columns: 1fr;
+    }
+
+
+    .filter-sidebar {
+        position: static;
+    }
+
+
+    .product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .products-header {
+        padding-top: 40px;
+    }
+
+
+    .products-header h1 {
+        font-size: 30px;
+    }
+
+
+    .products-content {
+        padding: 0 15px;
+    }
+
+
+    .product-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .products-toolbar {
+        align-items: flex-start;
+
+        gap: 12px;
+
+        flex-direction: column;
+    }
+
+
+    .products-toolbar-right {
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 8px;
+    }
+
+
+    .products-toolbar select {
+        flex-shrink: 0;
+
+        max-width: 100%;
+    }
+
+
+    .searching-indicator {
+        font-size: 12px;
+
+        min-height: 32px;
+
+        padding: 0 9px;
+    }
+
+
+    .search-error {
+        font-size: 12px;
+
+        padding: 9px 12px;
+    }
+
+
+    .product-card {
+        min-height: 500px;
+    }
+
+
+    .product-image-container {
+        height: 220px;
+    }
+
+
+    .product-name {
+        min-height: auto;
+    }
+
+
+    .product-info {
+        padding: 16px;
+    }
+}
