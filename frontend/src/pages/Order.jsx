@@ -72,6 +72,7 @@ function Order() {
             <main className="orders-page">
                 <div className="orders-error">
                     <h2>Unable to load orders</h2>
+
                     <p>{error}</p>
 
                     <button
@@ -91,19 +92,23 @@ function Order() {
             <section className="orders-header">
                 <div>
                     <p className="orders-eyebrow">BLUECART</p>
+
                     <h1>My Orders</h1>
+
                     <p className="orders-subtitle">
                         View and manage your recent purchases.
                     </p>
                 </div>
 
                 <div className="orders-count">
-                    {orders.length} {orders.length === 1 ? "Order" : "Orders"}
+                    {orders.length}{" "}
+                    {orders.length === 1 ? "Order" : "Orders"}
                 </div>
             </section>
 
             {orders.length === 0 ? (
                 <section className="orders-empty">
+
                     <div className="orders-empty-icon">
                         🛍️
                     </div>
@@ -120,6 +125,7 @@ function Order() {
                     >
                         Start Shopping
                     </button>
+
                 </section>
             ) : (
                 <section className="orders-list">
@@ -143,6 +149,7 @@ function Order() {
                                 </div>
 
                                 <div className="order-date">
+
                                     <span className="order-label">
                                         Ordered on
                                     </span>
@@ -150,23 +157,24 @@ function Order() {
                                     <strong>
                                         {formatDate(order.createdAt)}
                                     </strong>
+
                                 </div>
 
                             </div>
-
 
                             <div className="order-status-row">
 
                                 <span
                                     className={`order-status status-${(
                                         order.status || "placed"
-                                    ).toLowerCase().replaceAll("_", "-")}`}
+                                    )
+                                        .toLowerCase()
+                                        .replaceAll("_", "-")}`}
                                 >
                                     {order.status || "PLACED"}
                                 </span>
 
                             </div>
-
 
                             <div className="order-products">
 
@@ -182,7 +190,10 @@ function Order() {
                                             {item.imageUrl ? (
                                                 <img
                                                     src={item.imageUrl}
-                                                    alt={item.productName || "Product"}
+                                                    alt={
+                                                        item.productName ||
+                                                        "Product"
+                                                    }
                                                 />
                                             ) : (
                                                 <div className="order-product-placeholder">
@@ -192,11 +203,11 @@ function Order() {
 
                                         </div>
 
-
                                         <div className="order-product-info">
 
                                             <h3>
-                                                {item.productName || "Product"}
+                                                {item.productName ||
+                                                    "Product"}
                                             </h3>
 
                                             <p>
@@ -217,7 +228,6 @@ function Order() {
 
                                         </div>
 
-
                                         <div className="order-product-price">
                                             {formatCurrency(item.itemTotal)}
                                         </div>
@@ -227,7 +237,6 @@ function Order() {
                                 ))}
 
                             </div>
-
 
                             <div className="order-card-footer">
 
@@ -246,6 +255,11 @@ function Order() {
                                 <button
                                     type="button"
                                     className="order-details-button"
+                                    onClick={() =>
+                                        navigate(
+                                            `/orders/${order.orderId}`
+                                        )
+                                    }
                                 >
                                     View Order
                                 </button>

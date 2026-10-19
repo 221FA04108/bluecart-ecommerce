@@ -1,5 +1,6 @@
 package com.bluecart.bluecart_backend.service;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -29,10 +30,26 @@ public class ProductService {
     }
 
     public Product createProduct(Product product) {
+        if (product.getCreatedAt() == null || product.getCreatedAt().isBlank()) {
+            product.setCreatedAt(Instant.now().toString());
+        }
+
         return productRepository.save(product);
     }
 
     public Product updateProduct(Product product) {
+        Product existingProduct = productRepository.findById(product.getId());
+
+        // Preserve the original creation timestamp when editing an existing product.
+        if (existingProduct != null
+                && existingProduct.getCreatedAt() != null
+                && !existingProduct.getCreatedAt().isBlank()) {
+            product.setCreatedAt(existingProduct.getCreatedAt());
+        } else if (product.getCreatedAt() == null || product.getCreatedAt().isBlank()) {
+            // Legacy products may not have a timestamp yet; assign one on the next save.
+            product.setCreatedAt(Instant.now().toString());
+        }
+
         return productRepository.save(product);
     }
 
@@ -85,6 +102,10 @@ public class ProductService {
                         "Product stock is required for: "
                                 + product.getId()
                 );
+            }
+
+            if (product.getCreatedAt() == null || product.getCreatedAt().isBlank()) {
+                product.setCreatedAt(Instant.now().toString());
             }
         }
 

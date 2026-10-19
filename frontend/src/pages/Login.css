@@ -20,9 +20,9 @@
 ===================================================== */
 
 .login-container {
-  width: min(1050px, 100%);
+  width: min(760px, 100%);
 
-  min-height: 650px;
+  min-height: 540px;
 
   display: grid;
 
@@ -46,7 +46,7 @@
 .login-info {
   position: relative;
 
-  padding: 55px;
+  padding: 42px;
 
   display: flex;
 
@@ -175,7 +175,7 @@
 .login-welcome h1 {
   margin: 0;
 
-  font-size: 50px;
+  font-size: 42px;
 
   line-height: 1.05;
 
@@ -187,13 +187,13 @@
 }
 
 .login-welcome p {
-  margin-top: 25px;
+  margin-top: 18px;
 
   max-width: 400px;
 
   color: rgba(255, 255, 255, 0.78);
 
-  font-size: 16px;
+  font-size: 15px;
 
   line-height: 1.7;
 }
@@ -204,7 +204,7 @@
 ===================================================== */
 
 .login-card {
-  padding: 65px 60px;
+  padding: 48px 44px;
 
   display: flex;
 
@@ -219,13 +219,13 @@
 ===================================================== */
 
 .login-card-header {
-  margin-bottom: 32px;
+  margin-bottom: 25px;
 }
 
 .login-card-header h2 {
   margin: 0;
 
-  font-size: 30px;
+  font-size: 27px;
 
   letter-spacing: -0.7px;
 
@@ -246,7 +246,7 @@
 ===================================================== */
 
 .form-group {
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
@@ -269,7 +269,7 @@
 .form-group input {
   width: 100%;
 
-  height: 50px;
+  height: 46px;
 
   padding: 0 15px;
 
@@ -377,7 +377,7 @@
 .login-options {
   margin-top: -3px;
 
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .remember-me {
@@ -409,7 +409,7 @@
 .login-submit {
   width: 100%;
 
-  height: 52px;
+  height: 48px;
 
   border: none;
 
@@ -560,5 +560,293 @@
     align-items: center;
 
     gap: 3px;
+  }
+}
+
+/* =====================================================
+   ENHANCED LOGIN MOTION
+   ===================================================== */
+
+.login-page {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(23, 105, 255, 0.08), transparent 28%),
+    radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.07), transparent 30%),
+    #f7f9fc;
+}
+
+.login-container {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow:
+    0 22px 55px rgba(20, 30, 50, 0.10),
+    0 6px 18px rgba(23, 105, 255, 0.04);
+  animation: loginContainerIn 0.65s cubic-bezier(.2,.8,.2,1) both;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 28px 65px rgba(20, 30, 50, 0.12),
+    0 8px 24px rgba(23, 105, 255, 0.07);
+}
+
+.login-info {
+  background:
+    radial-gradient(circle at 90% 85%, rgba(255,255,255,0.13), transparent 28%),
+    linear-gradient(145deg, #1769ff 0%, #3155d9 52%, #5b3cc4 100%);
+}
+
+.login-info::before,
+.login-info::after {
+  transition:
+    transform 0.8s cubic-bezier(.2,.8,.2,1),
+    opacity 0.5s ease;
+}
+
+.login-container:hover .login-info::before {
+  transform: translate(-18px, -15px) scale(1.06);
+}
+
+.login-container:hover .login-info::after {
+  transform: translate(12px, 12px) scale(1.08);
+}
+
+.login-logo {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.login-logo:hover {
+  transform: translateX(3px);
+}
+
+.login-logo .logo-icon {
+  transition:
+    transform 0.3s cubic-bezier(.2,.8,.2,1),
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.login-logo:hover .logo-icon {
+  transform: rotate(-6deg) scale(1.06);
+  background: #eef4ff;
+}
+
+.login-badge {
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.login-container:hover .login-badge {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.28);
+}
+
+.login-welcome h1 {
+  animation: loginTextIn 0.7s 0.12s ease both;
+}
+
+.login-welcome p {
+  animation: loginTextIn 0.7s 0.2s ease both;
+}
+
+.login-card {
+  animation: loginCardIn 0.65s 0.08s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.login-card-header h2 {
+  transition: color 0.25s ease;
+}
+
+.form-group {
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.form-group:focus-within {
+  transform: translateX(2px);
+}
+
+.form-group input {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.form-group input:hover {
+  border-color: #b8c7e8;
+  background: #fbfdff;
+}
+
+.form-group input:focus {
+  border-color: #1769ff;
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 255, 0.10),
+    0 7px 18px rgba(23, 105, 255, 0.07);
+}
+
+.forgot-password,
+.show-password,
+.signup-section a {
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.forgot-password:hover,
+.signup-section a:hover {
+  color: #3155d9;
+  text-decoration: none;
+  transform: translateX(2px);
+}
+
+.show-password:hover {
+  color: #3155d9;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.login-submit {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(110deg, #1769ff 0%, #3155d9 55%, #5b3cc4 100%);
+  box-shadow: 0 7px 18px rgba(23, 105, 255, 0.12);
+  transition:
+    background 0.35s ease,
+    transform 0.28s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.35s ease;
+}
+
+.login-submit::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.38),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.login-submit:hover {
+  background:
+    linear-gradient(110deg, #0f4fd6 0%, #2948c5 55%, #4c32ad 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    0 13px 28px rgba(23, 105, 255, 0.22);
+}
+
+.login-submit:hover::before {
+  left: 140%;
+}
+
+.login-submit:active {
+  transform: translateY(0) scale(0.985);
+  box-shadow: 0 5px 13px rgba(23, 105, 255, 0.15);
+}
+
+.login-submit span {
+  transition:
+    transform 0.3s cubic-bezier(.2,.8,.2,1);
+}
+
+.login-submit:hover span {
+  transform: translateX(6px);
+}
+
+.remember-me input {
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.remember-me:hover input {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+.signup-section {
+  transition: transform 0.25s ease;
+}
+
+.signup-section:hover {
+  transform: translateY(-1px);
+}
+
+@keyframes loginContainerIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loginCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes loginTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-container,
+  .login-welcome h1,
+  .login-welcome p,
+  .login-card {
+    animation: none !important;
+  }
+
+  .login-container,
+  .login-info::before,
+  .login-info::after,
+  .login-logo,
+  .login-logo .logo-icon,
+  .login-badge,
+  .form-group,
+  .form-group input,
+  .login-submit,
+  .login-submit span,
+  .signup-section {
+    transition: none !important;
   }
 }

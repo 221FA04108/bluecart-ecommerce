@@ -11,7 +11,6 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
-import software.amazon.awssdk.enhanced.dynamodb.model.Page;
 
 @Repository
 public class OrderRepository {
@@ -30,12 +29,14 @@ public class OrderRepository {
         );
     }
 
+
     public Order save(Order order) {
 
         orderTable.putItem(order);
 
         return order;
     }
+
 
     public Order findById(String orderId) {
 
@@ -45,6 +46,7 @@ public class OrderRepository {
                 )
         );
     }
+
 
     public List<Order> findByUserId(String userId) {
 
@@ -61,6 +63,23 @@ public class OrderRepository {
 
         return orders;
     }
+
+
+    // =====================================================
+    // MANAGEMENT - GET ALL ORDERS
+    // =====================================================
+
+    public List<Order> findAll() {
+
+        List<Order> orders = new ArrayList<>();
+
+        orderTable.scan()
+                .items()
+                .forEach(orders::add);
+
+        return orders;
+    }
+
 
     public void deleteById(String orderId) {
 

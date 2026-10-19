@@ -28,6 +28,9 @@ public class Product {
 
     private Map<String, String> specifications;
 
+    // ISO-8601 timestamp set by the backend when the product is created.
+    private String createdAt;
+
     @DynamoDbPartitionKey
     public String getId() {
         return id;
@@ -131,5 +134,13 @@ public class Product {
 
     public void setSpecifications(Map<String, String> specifications) {
         this.specifications = specifications;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }

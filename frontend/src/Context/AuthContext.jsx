@@ -9,11 +9,13 @@ const AuthContext = createContext();
 
 const USER_STORAGE_KEY = "bluecart_user";
 const TOKEN_STORAGE_KEY = "bluecart_token";
+const ROLE_STORAGE_KEY = "bluecart_role";
 
 export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState(null);
     const [token, setToken] = useState(null);
+    const [role, setRole] = useState(null);
     const [loading, setLoading] = useState(true);
 
     // =====================================================
@@ -32,20 +34,39 @@ export function AuthProvider({ children }) {
                 TOKEN_STORAGE_KEY
             );
 
-            if (storedUser && storedToken) {
+            const storedRole = sessionStorage.getItem(
+                ROLE_STORAGE_KEY
+            );
+
+            if (
+                storedUser &&
+                storedToken &&
+                storedRole
+            ) {
 
                 const parsedUser = JSON.parse(storedUser);
 
                 setCurrentUser(parsedUser);
                 setToken(storedToken);
+                setRole(storedRole);
 
             } else {
 
-                sessionStorage.removeItem(USER_STORAGE_KEY);
-                sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+                sessionStorage.removeItem(
+                    USER_STORAGE_KEY
+                );
+
+                sessionStorage.removeItem(
+                    TOKEN_STORAGE_KEY
+                );
+
+                sessionStorage.removeItem(
+                    ROLE_STORAGE_KEY
+                );
 
                 setCurrentUser(null);
                 setToken(null);
+                setRole(null);
             }
 
         } catch (error) {
@@ -55,11 +76,21 @@ export function AuthProvider({ children }) {
                 error
             );
 
-            sessionStorage.removeItem(USER_STORAGE_KEY);
-            sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+            sessionStorage.removeItem(
+                USER_STORAGE_KEY
+            );
+
+            sessionStorage.removeItem(
+                TOKEN_STORAGE_KEY
+            );
+
+            sessionStorage.removeItem(
+                ROLE_STORAGE_KEY
+            );
 
             setCurrentUser(null);
             setToken(null);
+            setRole(null);
 
         } finally {
 
@@ -72,10 +103,22 @@ export function AuthProvider({ children }) {
     // LOGIN
     // =====================================================
 
-    const login = (user, authToken) => {
+    const login = (
+        user,
+        authToken,
+        authRole
+    ) => {
 
-        if (!user || !authToken) {
-            console.error("Login failed: user or token missing");
+        if (
+            !user ||
+            !authToken ||
+            !authRole
+        ) {
+
+            console.error(
+                "Login failed: user, token or role missing"
+            );
+
             return;
         }
 
@@ -89,8 +132,14 @@ export function AuthProvider({ children }) {
             authToken
         );
 
+        sessionStorage.setItem(
+            ROLE_STORAGE_KEY,
+            authRole
+        );
+
         setCurrentUser(user);
         setToken(authToken);
+        setRole(authRole);
     };
 
     // =====================================================
@@ -99,11 +148,21 @@ export function AuthProvider({ children }) {
 
     const logout = () => {
 
-        sessionStorage.removeItem(USER_STORAGE_KEY);
-        sessionStorage.removeItem(TOKEN_STORAGE_KEY);
+        sessionStorage.removeItem(
+            USER_STORAGE_KEY
+        );
+
+        sessionStorage.removeItem(
+            TOKEN_STORAGE_KEY
+        );
+
+        sessionStorage.removeItem(
+            ROLE_STORAGE_KEY
+        );
 
         setCurrentUser(null);
         setToken(null);
+        setRole(null);
     };
 
     // =====================================================
@@ -122,17 +181,27 @@ export function AuthProvider({ children }) {
                 TOKEN_STORAGE_KEY
             );
 
-            if (storedUser && storedToken) {
+            const storedRole = sessionStorage.getItem(
+                ROLE_STORAGE_KEY
+            );
+
+            if (
+                storedUser &&
+                storedToken &&
+                storedRole
+            ) {
 
                 const parsedUser = JSON.parse(storedUser);
 
                 setCurrentUser(parsedUser);
                 setToken(storedToken);
+                setRole(storedRole);
 
             } else {
 
                 setCurrentUser(null);
                 setToken(null);
+                setRole(null);
             }
 
         } catch (error) {
@@ -144,6 +213,7 @@ export function AuthProvider({ children }) {
 
             setCurrentUser(null);
             setToken(null);
+            setRole(null);
         }
     };
 
@@ -153,13 +223,23 @@ export function AuthProvider({ children }) {
 
     const isAuthenticated =
         currentUser !== null &&
-        token !== null;
+        token !== null &&
+        role !== null;
+
+    const isAdmin =
+        role === "ADMIN";
+
+    const isCustomer =
+        role === "CUSTOMER";
 
     return (
         <AuthContext.Provider
             value={{
                 currentUser,
                 token,
+                role,
+                isAdmin,
+                isCustomer,
                 isAuthenticated,
                 loading,
                 login,

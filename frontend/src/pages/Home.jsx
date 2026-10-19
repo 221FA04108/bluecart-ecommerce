@@ -54,7 +54,7 @@ function Home() {
             {/* Headphones */}
             <div className="headphone-wrapper">
               <img
-                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+                src=""
                 alt="Aero Headphones"
                 className="hero-headphones"
               />
@@ -66,7 +66,7 @@ function Home() {
               <strong>Free shipping</strong>
 
               <span>
-                on orders $75+.
+                on orders ₹7500+.
               </span>
 
             </div>
@@ -81,7 +81,7 @@ function Home() {
               </strong>
 
               <span>
-                From $129
+                From ₹12900
               </span>
 
             </div>

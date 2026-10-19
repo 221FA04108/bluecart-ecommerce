@@ -3,6 +3,7 @@ package com.bluecart.bluecart_backend.controller;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bluecart.bluecart_backend.dto.AuthResponse;
 import com.bluecart.bluecart_backend.dto.RegisterRequest;
 import com.bluecart.bluecart_backend.model.User;
+import com.bluecart.bluecart_backend.service.AdminAuthService;
 import com.bluecart.bluecart_backend.service.AuthService;
 import com.bluecart.bluecart_backend.service.JwtService;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -20,19 +23,21 @@ public class AuthController {
 
     private final AuthService authService;
     private final JwtService jwtService;
+    private final AdminAuthService adminAuthService;
+
 
     public AuthController(
             AuthService authService,
-            JwtService jwtService) {
+            JwtService jwtService,
+            AdminAuthService adminAuthService) {
 
         this.authService = authService;
         this.jwtService = jwtService;
+        this.adminAuthService = adminAuthService;
     }
 
 
-    // =====================================================
-    // REGISTER
-    // =====================================================
+    
 
     @PostMapping("/register")
     public ResponseEntity<?> register(
@@ -70,9 +75,7 @@ public class AuthController {
     }
 
 
-    // =====================================================
-    // LOGIN
-    // =====================================================
+    
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
@@ -87,7 +90,48 @@ public class AuthController {
                     request.get("password");
 
 
-            // Verify email and password
+            
+
+            if (adminAuthService.authenticate(
+                    email,
+                    password)) {
+
+                String token =
+                        jwtService.generateAdminToken(
+                                adminAuthService.getAdminId(),
+                                adminAuthService.getAdminEmail(),
+                                adminAuthService.getAdminName()
+                        );
+
+
+                AuthResponse adminResponse =
+                        new AuthResponse(
+                                adminAuthService.getAdminId(),
+                                adminAuthService.getAdminName(),
+                                adminAuthService.getAdminEmail(),
+                                "",
+                                "",
+                                "",
+                                ""
+                        );
+
+
+                return ResponseEntity.ok(
+                        Map.of(
+                                "user",
+                                adminResponse,
+
+                                "token",
+                                token,
+
+                                "role",
+                                "ADMIN"
+                        )
+                );
+            }
+
+
+            
             User user =
                     authService.loginUser(
                             email,
@@ -95,7 +139,6 @@ public class AuthController {
                     );
 
 
-            // Generate JWT for authenticated user
             String token =
                     jwtService.generateToken(user);
 
@@ -114,10 +157,17 @@ public class AuthController {
 
             return ResponseEntity.ok(
                     Map.of(
-                        "user", response,
-                        "token", token
+                            "user",
+                            response,
+
+                            "token",
+                            token,
+
+                            "role",
+                            "CUSTOMER"
                     )
             );
+
 
         } catch (IllegalArgumentException e) {
 

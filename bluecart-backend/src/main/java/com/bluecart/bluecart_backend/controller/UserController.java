@@ -25,12 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    /*
-     * Get the currently logged-in user's profile.
-     *
-     * The user ID is taken from the JWT authentication,
-     * so the frontend does not need to send a user ID.
-     */
+    
     @GetMapping("/me")
     public ResponseEntity<?> getMyProfile(
             Authentication authentication) {

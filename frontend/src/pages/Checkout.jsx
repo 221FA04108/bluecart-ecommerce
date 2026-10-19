@@ -60,17 +60,7 @@ function Checkout() {
   const [error, setError] = useState("");
 
 
-  /*
-   * =========================================================
-   * LOAD LOGGED-IN USER DETAILS
-   * =========================================================
-   *
-   * Name, email and mobile are already available from
-   * the authenticated user's session.
-   *
-   * The backend will still identify the user using the JWT
-   * and fetch the authoritative user record from DynamoDB.
-   */
+  
 
   useEffect(() => {
 
@@ -100,11 +90,7 @@ function Checkout() {
   }, [currentUser]);
 
 
-  /*
-   * =========================================================
-   * FORM CHANGE
-   * =========================================================
-   */
+  
 
   const handleChange = (e) => {
 
@@ -132,11 +118,7 @@ function Checkout() {
   };
 
 
-  /*
-   * =========================================================
-   * ORDER CALCULATIONS
-   * =========================================================
-   */
+  
 
   const subtotal = cartItems.reduce(
     (total, item) =>
@@ -164,30 +146,6 @@ function Checkout() {
     tax;
 
 
-  /*
-   * =========================================================
-   * PLACE ORDER
-   * =========================================================
-   *
-   * IMPORTANT:
-   *
-   * We only send:
-   * - payment method
-   * - delivery address
-   *
-   * We DO NOT send:
-   * - userId
-   * - product prices
-   * - product names
-   * - quantities
-   * - subtotal
-   * - tax
-   * - total
-   *
-   * The backend should get those from the authenticated
-   * user, CartItems table and Products table.
-   */
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -195,10 +153,7 @@ function Checkout() {
     setError("");
 
 
-    /*
-     * Currently only Cash on Delivery is connected
-     * to the Orders backend.
-     */
+    
 
     if (paymentMethod !== "cod") {
 
@@ -210,9 +165,7 @@ function Checkout() {
     }
 
 
-    /*
-     * Make sure the user is logged in.
-     */
+   
 
     if (!currentUser) {
 
@@ -243,13 +196,7 @@ function Checkout() {
       setPlacingOrder(true);
 
 
-      /*
-       * Send only the information required from Checkout.
-       *
-       * apiRequest automatically adds:
-       *
-       * Authorization: Bearer <JWT>
-       */
+      
 
       const orderData = {
 
@@ -275,9 +222,7 @@ function Checkout() {
       };
 
 
-      /*
-       * Create order in Spring Boot.
-       */
+      
 
       const data = await apiRequest(
         "/api/orders",
@@ -289,10 +234,7 @@ function Checkout() {
       );
 
 
-      /*
-       * Backend should return the actual
-       * generated order ID.
-       */
+      
 
       const createdOrderId =
         data?.orderId ||
@@ -303,14 +245,7 @@ function Checkout() {
       setOrderNumber(createdOrderId);
 
 
-      /*
-       * Backend should already clear the user's
-       * CartItems after successfully creating
-       * the order.
-       *
-       * Refresh the frontend cart so the cart
-       * count also becomes zero.
-       */
+      
 
       try {
 
@@ -326,9 +261,7 @@ function Checkout() {
       }
 
 
-      /*
-       * Show success screen.
-       */
+      
 
       setOrderPlaced(true);
 
@@ -354,11 +287,7 @@ function Checkout() {
   };
 
 
-  /*
-   * =========================================================
-   * CART LOADING
-   * =========================================================
-   */
+  
 
   if (cartLoading) {
 
@@ -383,11 +312,7 @@ function Checkout() {
   }
 
 
-  /*
-   * =========================================================
-   * EMPTY CART
-   * =========================================================
-   */
+  
 
   if (!cartItems.length && !orderPlaced) {
 
@@ -423,11 +348,7 @@ function Checkout() {
   }
 
 
-  /*
-   * =========================================================
-   * ORDER SUCCESS
-   * =========================================================
-   */
+  
 
   if (orderPlaced) {
 

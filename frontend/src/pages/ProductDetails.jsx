@@ -99,6 +99,7 @@ function ProductDetails() {
                         type="button"
                         onClick={() => navigate("/products")}
                     >
+                        
                         Back to Products
                     </button>
 

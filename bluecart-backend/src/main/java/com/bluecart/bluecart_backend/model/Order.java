@@ -47,6 +47,11 @@ public class Order {
     // Delivery information
     private String deliveredAt;
 
+    // Cancellation information
+    private String cancelledAt;
+    private String cancellationReason;
+
+
     @DynamoDbPartitionKey
     public String getOrderId() {
         return orderId;
@@ -55,6 +60,7 @@ public class Order {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
+
 
     @DynamoDbSecondaryPartitionKey(indexNames = "userId-index")
     public String getUserId() {
@@ -65,6 +71,7 @@ public class Order {
         this.userId = userId;
     }
 
+
     public String getCustomerName() {
         return customerName;
     }
@@ -72,6 +79,7 @@ public class Order {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
 
     public String getEmail() {
         return email;
@@ -81,6 +89,7 @@ public class Order {
         this.email = email;
     }
 
+
     public String getMobile() {
         return mobile;
     }
@@ -88,6 +97,7 @@ public class Order {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
 
     public String getShippingDoorNo() {
         return shippingDoorNo;
@@ -97,6 +107,7 @@ public class Order {
         this.shippingDoorNo = shippingDoorNo;
     }
 
+
     public String getShippingStreet() {
         return shippingStreet;
     }
@@ -104,6 +115,7 @@ public class Order {
     public void setShippingStreet(String shippingStreet) {
         this.shippingStreet = shippingStreet;
     }
+
 
     public String getShippingCity() {
         return shippingCity;
@@ -113,6 +125,7 @@ public class Order {
         this.shippingCity = shippingCity;
     }
 
+
     public String getShippingDistrict() {
         return shippingDistrict;
     }
@@ -120,6 +133,7 @@ public class Order {
     public void setShippingDistrict(String shippingDistrict) {
         this.shippingDistrict = shippingDistrict;
     }
+
 
     public String getShippingState() {
         return shippingState;
@@ -129,6 +143,7 @@ public class Order {
         this.shippingState = shippingState;
     }
 
+
     public String getShippingPostalCode() {
         return shippingPostalCode;
     }
@@ -136,6 +151,7 @@ public class Order {
     public void setShippingPostalCode(String shippingPostalCode) {
         this.shippingPostalCode = shippingPostalCode;
     }
+
 
     public String getPaymentMethod() {
         return paymentMethod;
@@ -145,6 +161,7 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
+
     public String getStatus() {
         return status;
     }
@@ -152,6 +169,7 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
+
 
     public List<OrderItem> getItems() {
         return items;
@@ -161,6 +179,7 @@ public class Order {
         this.items = items;
     }
 
+
     public BigDecimal getSubtotal() {
         return subtotal;
     }
@@ -168,6 +187,7 @@ public class Order {
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
+
 
     public BigDecimal getShipping() {
         return shipping;
@@ -177,6 +197,7 @@ public class Order {
         this.shipping = shipping;
     }
 
+
     public BigDecimal getTax() {
         return tax;
     }
@@ -185,6 +206,7 @@ public class Order {
         this.tax = tax;
     }
 
+
     public BigDecimal getTotal() {
         return total;
     }
@@ -192,6 +214,7 @@ public class Order {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
 
     @DynamoDbSecondarySortKey(indexNames = "userId-index")
     public String getCreatedAt() {
@@ -202,6 +225,7 @@ public class Order {
         this.createdAt = createdAt;
     }
 
+
     public String getUpdatedAt() {
         return updatedAt;
     }
@@ -209,6 +233,7 @@ public class Order {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
     public String getTrackingNumber() {
         return trackingNumber;
@@ -218,6 +243,7 @@ public class Order {
         this.trackingNumber = trackingNumber;
     }
 
+
     public String getCarrier() {
         return carrier;
     }
@@ -225,6 +251,7 @@ public class Order {
     public void setCarrier(String carrier) {
         this.carrier = carrier;
     }
+
 
     public String getEstimatedDelivery() {
         return estimatedDelivery;
@@ -234,11 +261,30 @@ public class Order {
         this.estimatedDelivery = estimatedDelivery;
     }
 
+
     public String getDeliveredAt() {
         return deliveredAt;
     }
 
     public void setDeliveredAt(String deliveredAt) {
         this.deliveredAt = deliveredAt;
+    }
+
+
+    public String getCancelledAt() {
+        return cancelledAt;
+    }
+
+    public void setCancelledAt(String cancelledAt) {
+        this.cancelledAt = cancelledAt;
+    }
+
+
+    public String getCancellationReason() {
+        return cancellationReason;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
     }
 }

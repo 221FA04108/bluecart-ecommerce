@@ -35,10 +35,7 @@ function Products() {
     });
 
 
-    /*
-     * Full-page loading is only used when the
-     * complete catalogue is initially loading.
-     */
+    
 
     const [loading, setLoading] = useState(() => {
 
@@ -56,11 +53,7 @@ function Products() {
     });
 
 
-    /*
-     * Separate state for search loading.
-     *
-     * This does NOT hide the existing product grid.
-     */
+    
 
     const [searching, setSearching] = useState(false);
 
@@ -138,11 +131,7 @@ function Products() {
                 setProducts(data);
 
 
-                /*
-                 * Cache only the complete catalogue.
-                 *
-                 * Search results never overwrite this cache.
-                 */
+                
 
                 sessionStorage.setItem(
                     "bluecart_products",
@@ -156,11 +145,7 @@ function Products() {
 
                 if (searchQuery) {
 
-                    /*
-                     * If a search fails, keep the previous
-                     * products visible instead of flashing
-                     * an empty loading page.
-                     */
+                    
 
                     setError(
                         "Unable to search products."
@@ -305,9 +290,7 @@ function Products() {
     ]);
 
 
-    /* =========================
-       Initial Loading State
-    ========================= */
+    
 
     if (loading) {
 
@@ -324,9 +307,7 @@ function Products() {
     }
 
 
-    /* =========================
-       Error State
-    ========================= */
+    
 
     if (error && !searchQuery) {
 
@@ -343,9 +324,7 @@ function Products() {
     }
 
 
-    /* =========================
-       Products Page
-    ========================= */
+    
 
     return (
 

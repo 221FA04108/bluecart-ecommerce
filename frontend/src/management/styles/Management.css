@@ -1,0 +1,3789 @@
+/* =====================================================
+   MANAGEMENT APPLICATION
+===================================================== */
+
+.management-app {
+    min-height: 100vh;
+    display: flex;
+
+    background: #f3f5f7;
+    color: #1f2937;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.management-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #1f2933;
+    color: #ffffff;
+
+    border-right: 1px solid #374151;
+
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.management-brand {
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 22px;
+
+    border-bottom: 1px solid #374151;
+
+    box-sizing: border-box;
+}
+
+.management-brand-mark {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.management-brand-text {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 11px;
+}
+
+.management-brand-name {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    letter-spacing: -0.3px;
+}
+
+.management-brand-label {
+    margin-top: 4px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.management-navigation {
+    flex: 1;
+
+    padding: 24px 14px;
+
+    overflow-y: auto;
+}
+
+.management-nav-section {
+    margin-bottom: 28px;
+}
+
+.management-nav-heading {
+    display: block;
+
+    padding: 0 12px;
+    margin-bottom: 9px;
+
+    color: #8b95a1;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.9px;
+}
+
+.management-nav-item {
+    position: relative;
+
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    margin-bottom: 3px;
+
+    color: #c4cad1;
+
+    background: transparent;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    box-sizing: border-box;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-nav-item:hover {
+    background: #293542;
+    color: #ffffff;
+}
+
+.management-nav-item.active {
+    background: #334155;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.management-nav-item.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+
+    width: 3px;
+
+    background: #3b82f6;
+
+    border-radius: 0 2px 2px 0;
+}
+
+.management-nav-icon {
+    width: 26px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 8px;
+
+    color: #9ca3af;
+
+    font-size: 16px;
+    line-height: 1;
+}
+
+.management-nav-item:hover .management-nav-icon,
+.management-nav-item.active .management-nav-icon {
+    color: #60a5fa;
+}
+
+.management-nav-label {
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   SIDEBAR FOOTER
+===================================================== */
+
+.management-sidebar-footer {
+    padding: 16px 14px;
+
+    border-top: 1px solid #374151;
+}
+
+.management-admin-profile {
+    display: flex;
+    align-items: center;
+
+    padding: 8px 8px 14px;
+}
+
+.management-admin-avatar {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #374151;
+    color: #dbeafe;
+
+    border: 1px solid #4b5563;
+    border-radius: 50%;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.management-admin-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+}
+
+.management-admin-name {
+    overflow: hidden;
+
+    color: #f3f4f6;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.management-admin-role {
+    margin-top: 3px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+.management-logout-button {
+    width: 100%;
+    min-height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 11px;
+
+    border: 1px solid #374151;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #d1d5db;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-logout-button:hover {
+    background: #3a2527;
+    border-color: #6b3438;
+    color: #fca5a5;
+}
+
+.management-logout-icon {
+    width: 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 6px;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   MAIN CONTENT AREA
+===================================================== */
+
+.management-main {
+    flex: 1;
+
+    min-width: 0;
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+}
+/* =====================================================
+   RETURN MANAGEMENT
+===================================================== */
+
+.management-returns-page {
+    width: 100%;
+}
+
+
+/* =====================================================
+   RETURN STATISTICS
+===================================================== */
+
+.management-returns-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.management-return-stat-card {
+    min-height: 138px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+
+    box-sizing: border-box;
+}
+
+.management-return-stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.management-return-stat-card > strong {
+    display: block;
+
+    margin-top: 17px;
+
+    color: #111827;
+
+    font-size: 28px;
+    font-weight: 650;
+
+    line-height: 1;
+}
+
+.management-return-stat-card > small {
+    display: block;
+
+    margin-top: 9px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+.management-return-stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef4ff;
+    color: #2563eb;
+
+    border: 1px solid #dbe7ff;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.management-return-stat-icon.warning {
+    background: #fff8e8;
+    border-color: #f0dfb7;
+    color: #9a6b16;
+}
+
+.management-return-stat-icon.progress {
+    background: #f5f0ff;
+    border-color: #e5d9ff;
+    color: #6d28d9;
+}
+
+.management-return-stat-icon.success {
+    background: #edf7f0;
+    border-color: #cce8d3;
+    color: #287a3d;
+}
+
+
+/* =====================================================
+   RETURN FILTERS
+===================================================== */
+
+.management-returns-filters {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+    overflow-x: auto;
+
+    padding-bottom: 3px;
+}
+
+.management-return-filter {
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 12px;
+
+    flex-shrink: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #d7dce1;
+    border-radius: 6px;
+
+    color: #6b7280;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-return-filter:hover {
+    background: #f7f9fc;
+    border-color: #bfc7d1;
+    color: #374151;
+}
+
+.management-return-filter.active {
+    background: #eef4ff;
+    border-color: #b9cff5;
+    color: #1d4ed8;
+}
+
+.management-return-filter-count {
+    min-width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    box-sizing: border-box;
+
+    background: #f3f4f6;
+
+    border-radius: 10px;
+
+    color: #6b7280;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.management-return-filter.active
+.management-return-filter-count {
+    background: #dbe7ff;
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   RETURN TABLE PANEL
+===================================================== */
+
+.management-returns-table-panel {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.management-returns-table-header {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    box-sizing: border-box;
+}
+
+.management-returns-table-header h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.management-returns-table-header p {
+    margin: 4px 0 0;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   RETURN TABLE
+===================================================== */
+
+.management-returns-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.management-returns-table {
+    width: 100%;
+
+    min-width: 1250px;
+
+    border-collapse: collapse;
+}
+
+.management-returns-table th {
+    height: 46px;
+
+    padding: 0 14px;
+
+    background: #f7f8fa;
+
+    border-bottom: 1px solid #e1e5e9;
+
+    color: #6b7280;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.management-returns-table td {
+    min-height: 72px;
+
+    padding: 12px 14px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    color: #4b5563;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+.management-returns-table tbody tr:hover {
+    background: #fafbfc;
+}
+
+.management-returns-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =====================================================
+   RETURN ID / ORDER
+===================================================== */
+
+.management-return-id {
+    color: #1f2937;
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.management-return-order-id {
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.management-return-customer {
+    color: #4b5563;
+
+    font-size: 11px;
+}
+
+.management-return-reason {
+    color: #4b5563;
+
+    font-size: 11px;
+}
+
+.management-return-amount {
+    color: #1f2937;
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.management-return-date {
+    color: #6b7280;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   RETURN PRODUCT CELL
+===================================================== */
+
+.management-return-product {
+    min-width: 230px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.management-return-product-image {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    background: #f3f4f6;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+
+    color: #9ca3af;
+
+    font-size: 13px;
+}
+
+.management-return-product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.management-return-product-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.management-return-product-info strong {
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: #1f2937;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    text-overflow: ellipsis;
+}
+
+.management-return-product-info span {
+    color: #9ca3af;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   RETURN STATUS
+===================================================== */
+
+.management-return-status {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 82px;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+.management-return-status-requested {
+    background: #fff8e8;
+    border: 1px solid #f0dfb7;
+    color: #9a6b16;
+}
+
+.management-return-status-approved {
+    background: #eef4ff;
+    border: 1px solid #dbe7ff;
+    color: #2563eb;
+}
+
+.management-return-status-pickup {
+    background: #f5f0ff;
+    border: 1px solid #e5d9ff;
+    color: #6d28d9;
+}
+
+.management-return-status-received {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+}
+
+.management-return-status-inspected {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+}
+
+.management-return-status-refund {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #c2410c;
+}
+
+.management-return-status-refunded {
+    background: #edf7f0;
+    border: 1px solid #cce8d3;
+    color: #287a3d;
+}
+
+.management-return-status-rejected {
+    background: #fff1f2;
+    border: 1px solid #f1d0d4;
+    color: #b33a42;
+}
+
+.management-return-status-default {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+
+/* =====================================================
+   RETURN ACTION
+===================================================== */
+
+.management-return-view-button {
+    min-height: 30px;
+
+    padding: 0 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border: 1px solid #cfd5dc;
+    border-radius: 5px;
+
+    color: #374151;
+
+    font-family: inherit;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-return-view-button:hover {
+    background: #f7f9fc;
+
+    border-color: #9ca3af;
+
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   RETURN EMPTY STATE
+===================================================== */
+
+.management-returns-empty-cell {
+    padding: 0 !important;
+
+    height: 300px;
+
+    white-space: normal !important;
+}
+
+.management-returns-empty-state {
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+.management-returns-empty-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    background: #f3f4f6;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    color: #6b7280;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.management-returns-empty-state h3 {
+    margin: 0;
+
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.management-returns-empty-state p {
+    max-width: 350px;
+
+    margin: 7px 0 0;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   RETURN RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .management-returns-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .management-returns-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .management-returns-table-header {
+        min-height: 64px;
+
+        padding: 0 16px;
+    }
+
+    .management-return-stat-card {
+        min-height: 125px;
+
+        padding: 18px;
+    }
+
+    .management-return-filter {
+        min-height: 34px;
+
+        padding: 0 10px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .management-return-stat-card > strong {
+        font-size: 25px;
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.management-header {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e1e5e9;
+
+    box-sizing: border-box;
+}
+
+.management-header-title {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 20px;
+    font-weight: 650;
+
+    letter-spacing: -0.25px;
+}
+
+.management-header-subtitle {
+    margin: 4px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+.management-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.management-header-user {
+    display: flex;
+    align-items: center;
+}
+
+.management-header-avatar {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8eef7;
+    color: #1d4ed8;
+
+    border: 1px solid #d7e0ee;
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.management-header-user-info {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 9px;
+}
+
+.management-header-user-name {
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.management-header-user-role {
+    margin-top: 2px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   PAGE CONTENT
+===================================================== */
+
+.management-content {
+    padding: 28px 30px 40px;
+}
+
+
+/* =====================================================
+   COMMON MANAGEMENT ELEMENTS
+===================================================== */
+
+.management-page-title {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 24px;
+    font-weight: 650;
+
+    letter-spacing: -0.4px;
+}
+
+.management-page-description {
+    margin: 6px 0 0;
+
+    color: #6b7280;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.management-section {
+    margin-top: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.management-primary-button {
+    min-height: 38px;
+
+    padding: 0 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.management-primary-button:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.management-secondary-button {
+    min-height: 38px;
+
+    padding: 0 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #374151;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.management-secondary-button:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+
+/* =====================================================
+   MANAGEMENT DASHBOARD
+===================================================== */
+
+.management-dashboard {
+    width: 100%;
+}
+
+
+/* =====================================================
+   DASHBOARD HEADING
+===================================================== */
+
+.management-dashboard-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.management-dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.management-stat-card {
+    min-height: 142px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+
+    box-sizing: border-box;
+}
+
+.management-stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.management-stat-label {
+    color: #6b7280;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.management-stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef4ff;
+    color: #2563eb;
+
+    border: 1px solid #dbe7ff;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.management-stat-icon.warning {
+    background: #fff8e8;
+    color: #b7791f;
+    border-color: #f6e5bd;
+}
+
+.management-stat-icon.danger {
+    background: #fff1f2;
+    color: #c24141;
+    border-color: #f5d0d3;
+}
+
+.management-stat-value {
+    margin-top: 16px;
+
+    color: #111827;
+
+    font-size: 28px;
+    font-weight: 650;
+
+    line-height: 1;
+}
+
+.management-stat-note {
+    margin-top: 10px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   DASHBOARD GRID
+===================================================== */
+
+.management-dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(0, 1fr);
+
+    gap: 16px;
+
+    margin-top: 16px;
+}
+
+
+/* =====================================================
+   DASHBOARD PANELS
+===================================================== */
+
+.management-dashboard-panel {
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.management-panel-header {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    box-sizing: border-box;
+}
+
+.management-panel-title {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.management-panel-description {
+    margin: 4px 0 0;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.management-empty-state {
+    min-height: 210px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+
+    text-align: center;
+
+    box-sizing: border-box;
+}
+
+.management-empty-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    background: #f3f4f6;
+    color: #6b7280;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.management-empty-state h3 {
+    margin: 0;
+
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.management-empty-state p {
+    max-width: 330px;
+
+    margin: 7px 0 0;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   INVENTORY
+===================================================== */
+
+.management-inventory-placeholder {
+    padding: 8px 20px 14px;
+}
+
+.management-inventory-row {
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #edf0f2;
+
+    color: #4b5563;
+
+    font-size: 12px;
+}
+
+.management-inventory-row:last-child {
+    border-bottom: none;
+}
+
+.management-placeholder-value {
+    color: #9ca3af;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   QUICK ACTIONS
+===================================================== */
+
+.management-quick-actions {
+    margin-top: 16px;
+}
+
+.management-quick-action-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+
+    padding: 18px 20px 20px;
+}
+
+.management-quick-action {
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 13px;
+
+    background: #fafafa;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-quick-action:hover {
+    background: #f5f8fc;
+    border-color: #cbd5e1;
+    color: #1d4ed8;
+}
+
+.management-quick-action-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 9px;
+
+    background: #eef4ff;
+    color: #2563eb;
+
+    border: 1px solid #dbe7ff;
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .management-dashboard-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .management-sidebar {
+        width: 220px;
+    }
+
+    .management-main {
+        margin-left: 220px;
+    }
+
+    .management-header {
+        padding: 0 22px;
+    }
+
+    .management-content {
+        padding: 24px 22px 35px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .management-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-quick-action-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .management-sidebar {
+        position: static;
+
+        width: 100%;
+        min-height: auto;
+    }
+
+    .management-main {
+        margin-left: 0;
+    }
+
+    .management-app {
+        display: block;
+    }
+
+    .management-navigation {
+        padding: 14px;
+    }
+
+    .management-nav-section {
+        margin-bottom: 14px;
+    }
+
+    .management-sidebar-footer {
+        padding: 12px 14px;
+    }
+
+    .management-header {
+        min-height: 68px;
+
+        padding: 0 18px;
+    }
+
+    .management-content {
+        padding: 20px 18px 30px;
+    }
+
+    .management-header-subtitle {
+        display: none;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .management-dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .management-stat-card {
+        min-height: 130px;
+    }
+
+    .management-header-user-info {
+        display: none;
+    }
+
+    .management-page-title {
+        font-size: 21px;
+    }
+
+    .management-page-description {
+        font-size: 12px;
+    }
+}
+
+/* =====================================================
+   DASHBOARD LIVE DATA
+===================================================== */
+
+.management-dashboard-recent-orders {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.management-dashboard-order-row {
+    min-height: 62px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(150px, 1.5fr)
+        minmax(130px, 1fr)
+        70px
+        95px
+        110px
+        auto;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    box-sizing: border-box;
+}
+
+
+.management-dashboard-order-row:last-child {
+    border-bottom: none;
+}
+
+
+.management-dashboard-order-row:hover {
+    background: #fafbfc;
+}
+
+
+.management-dashboard-order-main {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.management-dashboard-order-main strong {
+    overflow: hidden;
+
+    color: #1f2937;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.management-dashboard-order-main span {
+    overflow: hidden;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.management-dashboard-order-date {
+    color: #6b7280;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+.management-dashboard-order-items {
+    color: #6b7280;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+
+.management-dashboard-order-total {
+    color: #1f2937;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+
+.management-dashboard-order-row
+.management-order-status {
+    min-width: 0;
+
+    white-space: nowrap;
+}
+
+
+.management-dashboard-order-row
+.management-table-action {
+    cursor: pointer;
+}
+
+
+.management-dashboard-order-row
+.management-table-action:hover {
+    background: #f7f9fc;
+
+    border-color: #9ca3af;
+
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   DASHBOARD INVENTORY VALUES
+===================================================== */
+
+.management-dashboard-inventory-value {
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.management-dashboard-inventory-warning {
+    color: #9a6b16;
+}
+
+
+.management-dashboard-inventory-danger {
+    color: #b33a42;
+}
+
+
+/* =====================================================
+   DASHBOARD QUICK ACTION BUTTONS
+===================================================== */
+
+button.management-quick-action {
+    width: 100%;
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+button.management-quick-action:hover {
+    background: #f5f8fc;
+
+    border-color: #cbd5e1;
+
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   DASHBOARD RESPONSIVE
+===================================================== */
+
+@media (max-width: 1200px) {
+
+    .management-dashboard-order-row {
+        grid-template-columns:
+            minmax(140px, 1.4fr)
+            minmax(110px, 1fr)
+            60px
+            85px
+            100px
+            auto;
+
+        gap: 10px;
+
+        padding: 0 16px;
+    }
+
+}
+
+
+@media (max-width: 950px) {
+
+    .management-dashboard-order-row {
+
+        grid-template-columns:
+            minmax(140px, 1.5fr)
+            90px
+            80px
+            100px
+            auto;
+
+        gap: 10px;
+
+    }
+
+
+    .management-dashboard-order-date {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .management-dashboard-order-row {
+
+        grid-template-columns:
+            minmax(130px, 1fr)
+            auto;
+
+        gap: 8px;
+
+        padding: 12px 16px;
+
+    }
+
+
+    .management-dashboard-order-items,
+    .management-dashboard-order-total {
+
+        display: none;
+
+    }
+
+
+    .management-dashboard-order-row
+    .management-order-status {
+
+        justify-self: start;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .management-dashboard-order-row {
+
+        grid-template-columns:
+            1fr auto;
+
+    }
+
+
+    .management-dashboard-order-main strong {
+        font-size: 10px;
+    }
+
+
+    .management-dashboard-order-main span {
+        font-size: 9px;
+    }
+
+}
+/* =====================================================
+   PRODUCT MANAGEMENT
+===================================================== */
+
+.management-products-page {
+    width: 100%;
+}
+
+.management-page-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.management-page-heading h1 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 24px;
+    font-weight: 650;
+    line-height: 1.25;
+}
+
+.management-page-heading p {
+    margin: 7px 0 0;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.management-page-heading .management-primary-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.management-products-toolbar {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 190px auto;
+    align-items: end;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.management-products-search,
+.management-products-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.management-products-search label,
+.management-products-filter label {
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.management-products-search input,
+.management-products-filter select {
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 0 11px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    color: #1f2937;
+    font-size: 12px;
+    outline: none;
+}
+
+.management-products-search input:focus,
+.management-products-filter select:focus {
+    border-color: #93b4e8;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.management-products-count {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    min-height: 38px;
+    color: #9ca3af;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.management-products-count strong {
+    color: #374151;
+    font-size: 13px;
+}
+
+.management-products-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #fff7f7;
+    border: 1px solid #f0cfd2;
+    border-radius: 6px;
+    color: #9f3535;
+    font-size: 12px;
+}
+
+.management-products-error .management-secondary-button {
+    flex-shrink: 0;
+}
+
+.management-products-table-panel {
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.management-products-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.management-products-table {
+    width: 100%;
+    min-width: 1180px;
+    border-collapse: collapse;
+}
+
+.management-products-table th {
+    height: 46px;
+    padding: 0 14px;
+    background: #f7f8fa;
+    border-bottom: 1px solid #e1e5e9;
+    color: #6b7280;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.management-products-table td {
+    height: 72px;
+    padding: 0 14px;
+    border-bottom: 1px solid #edf0f2;
+    color: #4b5563;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.management-products-table tbody tr:hover {
+    background: #fafbfc;
+}
+
+.management-products-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.management-product-cell {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 235px;
+}
+
+.management-product-image {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.management-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.management-product-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.management-product-info strong {
+    max-width: 250px;
+    overflow: hidden;
+    color: #1f2937;
+    font-size: 12px;
+    font-weight: 650;
+    text-overflow: ellipsis;
+}
+
+.management-product-info span {
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+.management-product-price {
+    color: #1f2937 !important;
+    font-weight: 650;
+}
+
+.management-stock-badge {
+    display: inline-flex;
+    min-width: 30px;
+    justify-content: center;
+    padding: 4px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.management-stock-normal {
+    background: #edf7f0;
+    border: 1px solid #cce8d3;
+    color: #287a3d;
+}
+
+.management-stock-low {
+    background: #fff8e8;
+    border: 1px solid #f0dfb7;
+    color: #9a6b16;
+}
+
+.management-stock-out {
+    background: #fff1f2;
+    border: 1px solid #f1d0d4;
+    color: #b33a42;
+}
+
+.management-product-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.management-table-action {
+    height: 30px;
+    padding: 0 9px;
+    background: #ffffff;
+    border: 1px solid #d7dce1;
+    border-radius: 4px;
+    color: #4b5563;
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.management-table-action:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.management-table-action-danger {
+    color: #a63d45;
+}
+
+.management-products-table-state {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+}
+
+.management-products-table-state p {
+    margin: 8px 0 0;
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.management-products-table-state h3 {
+    margin: 0;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.management-table-empty-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #9ca3af;
+    font-size: 16px;
+    font-weight: 650;
+}
+.management-table-spinner {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 10px;
+    border: 2px solid #e5e7eb;
+    border-top-color: #6b7280;
+    border-radius: 50%;
+    animation: management-product-spinner 0.8s linear infinite;
+}
+
+@keyframes management-product-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .management-products-toolbar {
+        grid-template-columns: 1fr 180px;
+    }
+
+    .management-products-count {
+        justify-content: flex-start;
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .management-page-heading {
+        flex-direction: column;
+    }
+
+    .management-products-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .management-products-count {
+        grid-column: auto;
+    }
+}
+
+
+/* =====================================================
+   ORDER MANAGEMENT
+===================================================== */
+
+.management-orders-page {
+    width: 100%;
+}
+
+
+/* =====================================================
+   ORDER STATUS FILTERS
+===================================================== */
+
+.management-orders-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+
+.management-orders-filter {
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 12px;
+
+    flex-shrink: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #d7dce1;
+    border-radius: 6px;
+
+    color: #6b7280;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.management-orders-filter:hover {
+    background: #f7f9fc;
+    border-color: #bfc7d1;
+    color: #374151;
+}
+
+.management-orders-filter.active {
+    background: #eef4ff;
+    border-color: #b9cff5;
+    color: #1d4ed8;
+}
+
+.management-orders-filter-count {
+    min-width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    box-sizing: border-box;
+
+    background: #f3f4f6;
+
+    border-radius: 10px;
+
+    color: #6b7280;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.management-orders-filter.active .management-orders-filter-count {
+    background: #dbe7ff;
+    color: #1d4ed8;
+}
+
+
+/* =====================================================
+   ORDER SUMMARY
+===================================================== */
+
+.management-orders-summary {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    min-height: 28px;
+
+    margin-bottom: 10px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+.management-orders-summary strong {
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   ORDER ERROR
+===================================================== */
+
+.management-orders-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 16px;
+    padding: 12px 14px;
+
+    background: #fff7f7;
+
+    border: 1px solid #f0cfd2;
+    border-radius: 6px;
+
+    color: #9f3535;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.management-orders-error .management-secondary-button {
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   ORDER TABLE
+===================================================== */
+
+.management-order-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.management-order-info strong {
+    max-width: 220px;
+
+    overflow: hidden;
+
+    color: #1f2937;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    text-overflow: ellipsis;
+}
+
+.management-order-info span {
+    color: #9ca3af;
+
+    font-size: 10px;
+}
+
+.management-order-total {
+    color: #1f2937;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+
+/* =====================================================
+   ORDER STATUS BADGES
+===================================================== */
+
+.management-order-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 76px;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-transform: capitalize;
+}
+
+.management-order-status-placed {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+}
+
+.management-order-status-confirmed {
+    background: #eef4ff;
+    border: 1px solid #dbe7ff;
+    color: #2563eb;
+}
+
+.management-order-status-shipped {
+    background: #f5f0ff;
+    border: 1px solid #e5d9ff;
+    color: #6d28d9;
+}
+
+.management-order-status-transit {
+    background: #fff8e8;
+    border: 1px solid #f0dfb7;
+    color: #9a6b16;
+}
+
+.management-order-status-out-for-delivery {
+    background: #fff8e8;
+    border: 1px solid #f0dfb7;
+    color: #9a6b16;
+}
+
+.management-order-status-delivered {
+    background: #edf7f0;
+    border: 1px solid #cce8d3;
+    color: #287a3d;
+}
+
+.management-order-status-cancelled {
+    background: #fff1f2;
+    border: 1px solid #f1d0d4;
+    color: #b33a42;
+}
+
+.management-order-status-default {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+
+/* =====================================================
+   ORDER TABLE RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .management-orders-filters {
+        padding-bottom: 5px;
+    }
+
+    .management-orders-filter {
+        min-height: 34px;
+        padding: 0 10px;
+    }
+
+    .management-orders-error {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .management-orders-error .management-secondary-button {
+        width: 100%;
+    }
+
+    .management-order-status-control {
+        min-width: 0;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT PAGE
+===================================================== */
+
+.management-add-product-page {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   PRODUCT FORM
+===================================================== */
+
+.management-product-form {
+    margin-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* =====================================================
+   FORM SECTIONS
+===================================================== */
+
+.management-product-form-section {
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+
+.management-product-form-section-heading {
+    margin-bottom: 22px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #edf0f2;
+}
+
+
+.management-product-form-section-heading h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 16px;
+    font-weight: 650;
+}
+
+
+.management-product-form-section-heading p {
+    margin: 5px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.management-product-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+.management-product-form-field {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.management-product-form-field-full {
+    grid-column: 1 / -1;
+}
+
+
+/* =====================================================
+   FORM LABELS
+===================================================== */
+
+.management-product-form-field label {
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   FORM INPUTS
+===================================================== */
+
+.management-product-form-field input,
+.management-product-form-field textarea,
+.management-product-form-field select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px 11px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+.management-product-form-field input {
+    min-height: 40px;
+}
+
+
+.management-product-form-field textarea {
+    min-height: 100px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.management-product-form-field input::placeholder,
+.management-product-form-field textarea::placeholder {
+    color: #9ca3af;
+}
+
+
+.management-product-form-field input:hover,
+.management-product-form-field textarea:hover,
+.management-product-form-field select:hover {
+    border-color: #b7bec7;
+}
+
+
+.management-product-form-field input:focus,
+.management-product-form-field textarea:focus,
+.management-product-form-field select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =====================================================
+   FORM HELP TEXT
+===================================================== */
+
+.management-product-form-field small {
+    margin-top: 6px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   FORM ACTIONS
+===================================================== */
+
+.management-product-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 4px;
+}
+
+
+.management-product-form-actions
+.management-primary-button,
+.management-product-form-actions
+.management-secondary-button {
+    min-width: 120px;
+}
+
+
+/* =====================================================
+   RESPONSIVE FORM
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .management-add-product-page {
+        max-width: none;
+    }
+
+    .management-product-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-product-form-field-full {
+        grid-column: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .management-product-form-section {
+        padding: 18px;
+    }
+
+    .management-product-form {
+        margin-top: 18px;
+    }
+
+    .management-product-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .management-product-form-actions
+    .management-primary-button,
+    .management-product-form-actions
+    .management-secondary-button {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   DELETE PRODUCT MODAL
+===================================================== */
+
+.management-delete-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(15, 23, 42, 0.48);
+
+    box-sizing: border-box;
+}
+
+
+.management-delete-modal {
+    width: 100%;
+    max-width: 440px;
+
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.18);
+
+    box-sizing: border-box;
+}
+
+
+.management-delete-modal-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #fecaca;
+    border-radius: 50%;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.management-delete-modal-content h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 18px;
+    font-weight: 650;
+}
+
+
+.management-delete-modal-content p {
+    margin: 10px 0 0;
+
+    color: #374151;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+.management-delete-modal-content p strong {
+    color: #111827;
+
+    font-weight: 650;
+}
+
+
+.management-delete-modal-content > span {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #9ca3af;
+
+    font-size: 12px;
+}
+
+
+.management-delete-modal-error {
+    margin-top: 14px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+
+    background: #fef2f2;
+    color: #b91c1c;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+.management-delete-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+.management-delete-confirm-button {
+    min-height: 38px;
+
+    padding: 0 15px;
+
+    border: 1px solid #dc2626;
+    border-radius: 6px;
+
+    background: #dc2626;
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+
+.management-delete-confirm-button:hover {
+    background: #b91c1c;
+    border-color: #b91c1c;
+}
+
+
+.management-delete-confirm-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 600px) {
+
+    .management-delete-modal {
+        padding: 20px;
+    }
+
+
+    .management-delete-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .management-delete-modal-actions button {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   ORDER STATUS CONTROL
+===================================================== */
+
+.management-order-status-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 205px;
+}
+
+.management-order-status-select {
+    width: 108px;
+    height: 30px;
+
+    box-sizing: border-box;
+    padding: 0 28px 0 9px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: #ffffff;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #6b7280 50%),
+        linear-gradient(135deg, #6b7280 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 11px) 12px,
+        calc(100% - 7px) 12px;
+
+    background-size:
+        4px 4px,
+        4px 4px;
+
+    background-repeat: no-repeat;
+
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+
+    color: #374151;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    outline: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.management-order-status-select:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.management-order-status-select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.management-order-status-select:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   ORDER UPDATE ERROR
+===================================================== */
+
+.management-orders-update-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 12px;
+    padding: 10px 13px;
+
+    background: #fff7f7;
+
+    border: 1px solid #f0cfd2;
+    border-radius: 6px;
+
+    color: #9f3535;
+
+    font-size: 11px;
+}
+
+.management-orders-update-error
+.management-secondary-button {
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   ORDER DETAILS BUTTON
+===================================================== */
+
+.management-order-details-button {
+    min-height: 30px;
+
+    padding: 0 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border: 1px solid #cfd5dc;
+    border-radius: 5px;
+
+    color: #374151;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.management-order-details-button:hover {
+    background: #f7f9fc;
+    border-color: #9ca3af;
+    color: #1d4ed8;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =====================================================
+   ORDER DETAILS PAGE
+===================================================== */
+
+.management-order-details-page {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+}
+
+.management-order-back-button {
+    margin-bottom: 10px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: #2563eb;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.management-order-back-button:hover {
+    color: #1d4ed8;
+
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   ORDER DETAILS CARD
+===================================================== */
+
+.management-order-details-card {
+    margin-top: 18px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.management-order-details-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #edf0f2;
+}
+
+.management-order-details-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.management-order-details-header h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 17px;
+    font-weight: 650;
+}
+
+
+/* =====================================================
+   ORDER DETAILS GRID
+===================================================== */
+
+.management-order-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+.management-order-details-grid > div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.management-order-details-grid span {
+    color: #9ca3af;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.management-order-details-grid strong {
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   ORDER DETAILS SECTION
+===================================================== */
+
+.management-order-details-section-heading {
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #edf0f2;
+}
+
+.management-order-details-section-heading h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+
+/* =====================================================
+   SHIPPING ADDRESS
+===================================================== */
+
+.management-order-address {
+    margin-top: 16px;
+}
+
+.management-order-address p {
+    margin: 3px 0;
+
+    color: #4b5563;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   ORDER ITEMS
+===================================================== */
+
+.management-order-items {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 4px;
+}
+
+.management-order-item {
+    display: grid;
+
+    grid-template-columns:
+        56px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #edf0f2;
+}
+
+.management-order-item:last-child {
+    border-bottom: none;
+
+    padding-bottom: 0;
+}
+
+.management-order-item-image {
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+
+    color: #9ca3af;
+
+    font-size: 18px;
+}
+
+.management-order-item-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.management-order-item-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.management-order-item-info strong {
+    color: #1f2937;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.management-order-item-info span {
+    color: #9ca3af;
+
+    font-size: 10px;
+}
+
+.management-order-item-price {
+    color: #1f2937;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   ORDER SUMMARY
+===================================================== */
+
+.management-order-summary {
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+
+    max-width: 380px;
+
+    margin-left: auto;
+    margin-top: 18px;
+}
+
+.management-order-summary > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.management-order-summary span {
+    color: #6b7280;
+
+    font-size: 11px;
+}
+
+.management-order-summary strong {
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.management-order-summary-total {
+    margin-top: 5px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #e1e5e9;
+}
+
+.management-order-summary-total span {
+    color: #1f2937;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.management-order-summary-total strong {
+    color: #111827;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   ORDER DETAILS RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .management-order-details-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .management-order-details-card {
+        padding: 18px;
+    }
+
+    .management-order-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .management-order-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-order-item {
+        grid-template-columns:
+            50px minmax(0, 1fr);
+    }
+
+    .management-order-item-price {
+        grid-column: 2;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .management-order-details-button {
+        padding: 6px 8px;
+    }
+
+    .management-orders-update-error {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .management-orders-update-error
+    .management-secondary-button {
+        width: 100%;
+    }
+
+}
+
+
+
+/* =====================================================
+   CANCELLATION REQUESTS / SHARED MANAGEMENT PAGE
+   Added to align the cancellation page with the existing
+   Bluecart management styling without changing JSX logic.
+===================================================== */
+
+.management-page {
+    width: 100%;
+    min-width: 0;
+}
+
+.management-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.management-page-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+}
+
+.management-page-header h1 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.45px;
+}
+
+.management-page-header p {
+    margin: 7px 0 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.management-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+}
+
+.management-filter-button {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 13px;
+    border: 1px solid #d7dce1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #596579;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.management-filter-button:hover {
+    background: #f7f9fc;
+    border-color: #bfc7d1;
+    color: #1d4ed8;
+}
+
+.management-filter-button.active {
+    background: #eef4ff;
+    border-color: #b9cff5;
+    color: #1d4ed8;
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.025);
+}
+
+/* Consistent controls for sort selectors on management pages. */
+.management-page select,
+.management-sort-control select,
+.management-sort-bar select,
+.management-sort-select {
+    min-height: 38px;
+    box-sizing: border-box;
+    padding: 0 34px 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #374151;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.management-page select:hover,
+.management-sort-control select:hover,
+.management-sort-bar select:hover,
+.management-sort-select:hover {
+    border-color: #9ca3af;
+}
+
+.management-page select:focus,
+.management-sort-control select:focus,
+.management-sort-bar select:focus,
+.management-sort-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+/* Keep table actions visually consistent with the rest of the dashboard. */
+.management-page .management-order-details-button {
+    min-height: 36px;
+    padding: 0 13px;
+    border-color: #cfd5dc;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 11px;
+}
+
+.management-page .management-order-details-button:hover {
+    background: #f7f9fc;
+    border-color: #9ca3af;
+    color: #1d4ed8;
+}
+
+.management-page .management-products-table th {
+    height: 48px;
+    padding: 0 17px;
+    background: #f7f8fa;
+    color: #64748b;
+    font-size: 10px;
+    letter-spacing: 0.035em;
+}
+
+.management-page .management-products-table td {
+    padding: 12px 17px;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.management-page .management-products-table tbody tr {
+    transition: background 0.16s ease;
+}
+
+.management-page .management-products-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.management-page .management-order-status {
+    padding: 6px 10px;
+    font-size: 10px;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+.management-page .management-products-table-panel {
+    overflow: hidden;
+    border-color: #dfe4ea;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.035);
+}
+
+.management-page .management-products-table-wrapper {
+    overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+    .management-page-header {
+        margin-bottom: 16px;
+    }
+
+    .management-page-header h1 {
+        font-size: 23px;
+    }
+
+    .management-page-header p {
+        font-size: 12px;
+    }
+
+    .management-filter-bar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .management-filter-button {
+        min-height: 34px;
+        padding: 0 11px;
+        font-size: 11px;
+    }
+}
+

@@ -50,9 +50,7 @@ function Register() {
     setError("");
     setUserAlreadyExists(false);
 
-    /*
-     * Frontend validation
-     */
+    
 
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
@@ -72,10 +70,7 @@ function Register() {
     try {
       setLoading(true);
 
-      /*
-       * Combine all shipping address fields
-       * into one address string.
-       */
+      
 
       const address = [
         formData.shippingDoorNo,
@@ -88,9 +83,7 @@ function Register() {
         .filter((value) => value.trim() !== "")
         .join(", ");
 
-      /*
-       * Data expected by RegisterRequest.java
-       */
+      
 
       const registrationData = {
         name: formData.fullName.trim(),
@@ -102,9 +95,7 @@ function Register() {
         address: address,
       };
 
-      /*
-       * Send registration data to Spring Boot
-       */
+      
 
       const response = await fetch(
         "http://localhost:8080/api/auth/register",
@@ -175,9 +166,7 @@ function Register() {
   return (
     <main className="register-page">
 
-      {/* =================================================
-          EXISTING USER POPUP
-      ================================================= */}
+    
 
       {userAlreadyExists && (
         <div className="register-modal-overlay">

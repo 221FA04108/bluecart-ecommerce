@@ -39,6 +39,7 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
+
     public Order placeOrder(
             String userId,
             OrderRequest request) {
@@ -56,6 +57,7 @@ public class OrderService {
             );
         }
 
+
         // =====================================================
         // 2. Get user from database
         // =====================================================
@@ -68,6 +70,7 @@ public class OrderService {
                     "User account was not found."
             );
         }
+
 
         // =====================================================
         // 3. Get user's cart from database
@@ -82,6 +85,7 @@ public class OrderService {
                     "Your cart is empty."
             );
         }
+
 
         // =====================================================
         // 4. Build order items from Products table
@@ -119,6 +123,7 @@ public class OrderService {
                 );
             }
 
+
             // =================================================
             // Check stock
             // =================================================
@@ -132,11 +137,13 @@ public class OrderService {
                 );
             }
 
+
             BigDecimal itemTotal =
                     product.getPrice()
                             .multiply(
                                     BigDecimal.valueOf(quantity)
                             );
+
 
             OrderItem orderItem =
                     new OrderItem();
@@ -175,6 +182,7 @@ public class OrderService {
                     subtotal.add(itemTotal);
         }
 
+
         // =====================================================
         // 5. Calculate charges
         // =====================================================
@@ -192,15 +200,18 @@ public class OrderService {
                     BigDecimal.TEN;
         }
 
+
         BigDecimal tax =
                 subtotal.multiply(
                         BigDecimal.valueOf(0.08)
                 );
 
+
         BigDecimal total =
                 subtotal
                         .add(shipping)
                         .add(tax);
+
 
         // =====================================================
         // 6. Create Order
@@ -221,6 +232,7 @@ public class OrderService {
                 user.getId()
         );
 
+
         // =====================================================
         // User details from Users table
         // =====================================================
@@ -236,6 +248,7 @@ public class OrderService {
         order.setMobile(
                 user.getMobile()
         );
+
 
         // =====================================================
         // Shipping address from Checkout
@@ -264,6 +277,7 @@ public class OrderService {
         order.setShippingPostalCode(
                 request.getShippingPostalCode()
         );
+
 
         // =====================================================
         // Order information
@@ -301,12 +315,14 @@ public class OrderService {
                 Instant.now().toString()
         );
 
+
         // =====================================================
         // 7. SAVE ORDER FIRST
         // =====================================================
 
         Order savedOrder =
                 orderRepository.save(order);
+
 
         // =====================================================
         // 8. Clear cart only after order is saved
@@ -316,22 +332,399 @@ public class OrderService {
                 userId
         );
 
+
         return savedOrder;
     }
+
 
     public List<Order> getMyOrders(String userId) {
 
         if (userId == null || userId.isBlank()) {
-            throw new IllegalArgumentException("User information is missing.");
+
+            throw new IllegalArgumentException(
+                    "User information is missing."
+            );
         }
 
-        User user = userRepository.findById(userId);
+        User user =
+                userRepository.findById(userId);
 
         if (user == null) {
-            throw new IllegalArgumentException("User account was not found.");
+
+            throw new IllegalArgumentException(
+                    "User account was not found."
+            );
         }
 
         return orderRepository.findByUserId(userId);
     }
 
+
+    public Order getOrderById(
+            String userId,
+            String orderId) {
+
+        if (userId == null || userId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "User is not authenticated."
+            );
+        }
+
+        if (orderId == null || orderId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "Order ID is required."
+            );
+        }
+
+        Order order =
+                orderRepository.findById(orderId);
+
+        /*
+         * Do not reveal whether an order exists
+         * if it belongs to another user.
+         */
+        if (order == null
+                || !userId.equals(order.getUserId())) {
+
+            throw new IllegalArgumentException(
+                    "Order was not found."
+            );
+        }
+
+        return order;
+    }
+
+
+    // =====================================================
+    // CANCEL ORDER
+    // =====================================================
+
+    public Order cancelOrder(
+            String userId,
+            String orderId) {
+
+        if (userId == null || userId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "User is not authenticated."
+            );
+        }
+
+        if (orderId == null || orderId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "Order ID is required."
+            );
+        }
+
+        Order order =
+                orderRepository.findById(orderId);
+
+
+        // =================================================
+        // Verify order ownership
+        // =================================================
+
+        if (order == null
+                || !userId.equals(order.getUserId())) {
+
+            throw new IllegalArgumentException(
+                    "Order was not found."
+            );
+        }
+
+
+        String status =
+                order.getStatus();
+
+
+        // =================================================
+        // Already cancelled
+        // =================================================
+
+        if ("CANCELLED".equals(status)) {
+
+            throw new IllegalArgumentException(
+                    "This order has already been cancelled."
+            );
+        }
+
+
+        // =================================================
+        // Order has already been shipped
+        // =================================================
+
+        if ("SHIPPED".equals(status)
+                || "IN_TRANSIT".equals(status)
+                || "OUT_FOR_DELIVERY".equals(status)
+                || "DELIVERED".equals(status)) {
+
+            throw new IllegalArgumentException(
+                    "This order cannot be cancelled because it has already been shipped."
+            );
+        }
+
+
+        // =================================================
+        // Cancellation is allowed only before shipment
+        // =================================================
+
+        if (!"PLACED".equals(status)
+                && !"CONFIRMED".equals(status)) {
+
+            throw new IllegalArgumentException(
+                    "This order cannot be cancelled at its current status."
+            );
+        }
+
+
+        // =================================================
+        // Cancel the order
+        // =================================================
+
+        order.setStatus(
+                "CANCELLED"
+        );
+
+        String now =
+                Instant.now().toString();
+
+        order.setCancelledAt(
+                now
+        );
+
+        order.setUpdatedAt(
+                now
+        );
+
+
+        // =================================================
+        // Save updated order
+        // =================================================
+
+        return orderRepository.save(order);
+    }
+
+
+    // =====================================================
+    // MANAGEMENT - GET ALL ORDERS
+    // =====================================================
+
+    public List<Order> getAllOrders() {
+
+        return orderRepository.findAll();
+    }
+
+
+    // =====================================================
+    // MANAGEMENT - GET ORDER BY ID
+    // =====================================================
+
+    public Order getManagementOrderById(
+            String orderId) {
+
+        if (orderId == null || orderId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "Order ID is required."
+            );
+        }
+
+        Order order =
+                orderRepository.findById(orderId);
+
+        if (order == null) {
+
+            throw new IllegalArgumentException(
+                    "Order was not found."
+            );
+        }
+
+        return order;
+    }
+
+
+    // =====================================================
+    // MANAGEMENT - UPDATE ORDER STATUS
+    // =====================================================
+
+    public Order updateOrderStatus(
+            String orderId,
+            String newStatus) {
+
+        if (orderId == null || orderId.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "Order ID is required."
+            );
+        }
+
+        if (newStatus == null || newStatus.isBlank()) {
+
+            throw new IllegalArgumentException(
+                    "Order status is required."
+            );
+        }
+
+        Order order =
+                orderRepository.findById(orderId);
+
+        if (order == null) {
+
+            throw new IllegalArgumentException(
+                    "Order was not found."
+            );
+        }
+
+        String currentStatus =
+                order.getStatus();
+
+        String requestedStatus =
+                newStatus.trim().toUpperCase();
+
+
+        // =================================================
+        // Validate requested status
+        // =================================================
+
+        if (!"PLACED".equals(requestedStatus)
+                && !"CONFIRMED".equals(requestedStatus)
+                && !"SHIPPED".equals(requestedStatus)
+                && !"IN_TRANSIT".equals(requestedStatus)
+                && !"OUT_FOR_DELIVERY".equals(requestedStatus)
+                && !"DELIVERED".equals(requestedStatus)
+                && !"CANCELLED".equals(requestedStatus)) {
+
+            throw new IllegalArgumentException(
+                    "Invalid order status."
+            );
+        }
+
+
+        // =================================================
+        // Same status - nothing to update
+        // =================================================
+
+        if (requestedStatus.equals(currentStatus)) {
+
+            return order;
+        }
+
+
+        // =================================================
+        // CANCELLED is terminal
+        // =================================================
+
+        if ("CANCELLED".equals(currentStatus)) {
+
+            throw new IllegalArgumentException(
+                    "A cancelled order cannot be moved to another status."
+            );
+        }
+
+
+        // =================================================
+        // DELIVERED is terminal
+        // =================================================
+
+        if ("DELIVERED".equals(currentStatus)) {
+
+            throw new IllegalArgumentException(
+                    "A delivered order cannot be moved to another status."
+            );
+        }
+
+
+        // =================================================
+        // ADMIN CANCELLATION
+        //
+        // Admin can cancel an order only before shipment.
+        // =================================================
+
+        if ("CANCELLED".equals(requestedStatus)) {
+
+            if (!"PLACED".equals(currentStatus)
+                    && !"CONFIRMED".equals(currentStatus)) {
+
+                throw new IllegalArgumentException(
+                        "An order can only be cancelled before shipment."
+                );
+            }
+
+            order.setStatus(
+                    "CANCELLED"
+            );
+
+            String now =
+                    Instant.now().toString();
+
+            order.setCancelledAt(
+                    now
+            );
+
+            order.setUpdatedAt(
+                    now
+            );
+
+            return orderRepository.save(
+                    order
+            );
+        }
+
+
+        // =================================================
+        // NORMAL FORWARD STATUS TRANSITIONS
+        // =================================================
+
+        boolean validTransition =
+                ("PLACED".equals(currentStatus)
+                        && "CONFIRMED".equals(requestedStatus))
+
+                || ("CONFIRMED".equals(currentStatus)
+                        && "SHIPPED".equals(requestedStatus))
+
+                || ("SHIPPED".equals(currentStatus)
+                        && "IN_TRANSIT".equals(requestedStatus))
+
+                || ("IN_TRANSIT".equals(currentStatus)
+                        && "OUT_FOR_DELIVERY".equals(requestedStatus))
+
+                || ("OUT_FOR_DELIVERY".equals(currentStatus)
+                        && "DELIVERED".equals(requestedStatus));
+
+
+        if (!validTransition) {
+
+            throw new IllegalArgumentException(
+                    "Invalid status transition from "
+                            + currentStatus
+                            + " to "
+                            + requestedStatus
+            );
+        }
+
+
+        // =================================================
+        // Update status
+        // =================================================
+
+        order.setStatus(
+                requestedStatus
+        );
+
+        order.setUpdatedAt(
+                Instant.now().toString()
+        );
+
+
+        // =================================================
+        // Save updated order to DynamoDB
+        // =================================================
+
+        return orderRepository.save(
+                order
+        );
+    }
 }
