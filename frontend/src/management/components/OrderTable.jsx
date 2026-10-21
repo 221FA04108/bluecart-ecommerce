@@ -11,6 +11,7 @@ import {
 } from "../../Services/api";
 
 import "../styles/Management.css";
+import { exportToExcel } from "../utils/exporttoExcel";
 
 
 function OrderTable({
@@ -314,6 +315,23 @@ function OrderTable({
             <div className="management-products-table-panel">
 
                 <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: "10px", padding: "14px 16px 0", flexWrap: "wrap" }}>
+                    <button
+                        type="button"
+                        className="management-secondary-button"
+                        onClick={() => exportToExcel({
+                            records: orders,
+                            fileName: "bluecart_orders.xlsx",
+                            sheetName: "Orders",
+                            preferredColumns: [
+                                "orderId", "userId", "customerName", "email", "createdAt",
+                                "status", "paymentMethod", "paymentStatus", "total", "items",
+                                "shippingAddress", "billingAddress", "trackingNumber", "updatedAt"
+                            ]
+                        })}
+                        disabled={!Array.isArray(orders) || orders.length === 0}
+                    >
+                        Download Excel
+                    </button>
                     <label htmlFor="management-orders-sort" style={{ fontSize: "13px", fontWeight: 600 }}>Sort by</label>
                     <select
                         id="management-orders-sort"
@@ -326,6 +344,7 @@ function OrderTable({
                         <option value="price-desc">Total: High to Low</option>
                         <option value="price-asc">Total: Low to High</option>
                     </select>
+                    
                 </div>
 
                 <div className="management-products-table-wrapper">

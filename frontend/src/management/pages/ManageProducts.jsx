@@ -12,6 +12,7 @@ import {
 import ProductTable from "../components/ProductTable";
 
 import { apiRequest } from "../../Services/api";
+import { exportToExcel } from "../utils/exporttoExcel";
 
 
 function ManageProducts() {
@@ -242,17 +243,33 @@ function ManageProducts() {
                 </div>
 
 
-                <button
-                    type="button"
-                    className="management-primary-button"
-                    onClick={() =>
-                        navigate(
-                            "/management/products/add"
-                        )
-                    }
-                >
-                    + Add Product
-                </button>
+                <div className="management-page-actions" style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+                    <button
+                        type="button"
+                        className="management-secondary-button"
+                        onClick={() => exportToExcel({
+                            records: products,
+                            fileName: "bluecart_products.xlsx",
+                            sheetName: "Products",
+                            preferredColumns: [
+                                "id", "productFamily", "name", "category", "brand",
+                                "description", "variant", "colour", "price", "stock",
+                                "imageUrl", "images", "specifications", "createdAt", "updatedAt"
+                            ]
+                        })}
+                        disabled={loading || products.length === 0}
+                    >
+                        Download Excel
+                    </button>
+                    <button
+                        type="button"
+                        className="management-primary-button"
+                        onClick={() => navigate("/management/products/add")}
+                    >
+                        + Add Product
+                    </button>
+                    
+                </div>
 
             </div>
 

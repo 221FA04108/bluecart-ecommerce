@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { apiRequest } from "../../Services/api";
 import "../styles/Management.css";
+import { exportToExcel } from "../utils/exporttoExcel";
 
 const STATUS_FILTERS = [
     {
@@ -410,6 +411,26 @@ function ManageCancellationRequests() {
 
             {/* Sorting */}
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: "10px", margin: "14px 0", flexWrap: "wrap" }}>
+                <button
+                    type="button"
+                    className="management-secondary-button"
+                    onClick={() => exportToExcel({
+                        records: requests.map((request) => ({
+                            ...request,
+                            orderTotal: request.orderTotal ?? request.total ?? request.price ?? orderTotals[request.orderId] ?? ""
+                        })),
+                        fileName: "bluecart_cancellation_requests.xlsx",
+                        sheetName: "Cancellation Requests",
+                        preferredColumns: [
+                            "requestId", "orderId", "userId", "customerName", "email",
+                            "reason", "requestedAt", "processedAt", "requestStatus",
+                            "adminRemarks", "orderTotal"
+                        ]
+                    })}
+                    disabled={requests.length === 0}
+                >
+                    Download Excel
+                </button>
                 <label htmlFor="management-cancellations-sort" style={{ fontSize: "13px", fontWeight: 600 }}>Sort by</label>
                 <select
                     id="management-cancellations-sort"

@@ -9,6 +9,7 @@ import {
 } from "../../Services/api";
 
 import "../styles/Management.css";
+import { exportToExcel } from "../utils/exporttoExcel";
 
 
 const RETURN_FILTERS = [
@@ -785,6 +786,24 @@ function ManageReturns() {
                     </div>
 
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                        <button
+                            type="button"
+                            className="management-secondary-button"
+                            onClick={() => exportToExcel({
+                                records: returns,
+                                fileName: "bluecart_returns.xlsx",
+                                sheetName: "Returns",
+                                preferredColumns: [
+                                    "returnId", "orderId", "userId", "productId", "productName",
+                                    "quantity", "itemTotal", "returnReason", "otherReturnReason",
+                                    "returnStatus", "requestedAt", "approvedAt", "rejectedAt",
+                                    "completedAt", "adminRemarks", "productImage"
+                                ]
+                            })}
+                            disabled={loading || returns.length === 0}
+                        >
+                            Download Excel
+                        </button>
                         <label htmlFor="management-returns-sort" style={{ fontSize: "13px", fontWeight: 600 }}>Sort by</label>
                         <select
                             id="management-returns-sort"
